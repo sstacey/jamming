@@ -42,15 +42,12 @@ class App extends React.Component {
   }
 
   addTrack(track) {
-    console.log(track)
     const foundTrack = this.state.playlistTracks.some((playlistTrack) => playlistTrack.id === track.id)
-    if (foundTrack) {
-      console.log('track on playlist')
-      return
+    if (!foundTrack) {
+      this.setState({
+        playlistTracks: this.state.playlistTracks.concat(track)
+      })
     }
-    this.setState({
-      playlistTracks: this.state.playlistTracks.concat(track)
-    })
   }
 
   render() {
