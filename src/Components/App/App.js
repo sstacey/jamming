@@ -19,6 +19,11 @@ class App extends React.Component {
         name: 'Im on one',
         artist: 'Lil Wayne',
         album: 'The Carter 3'  
+      }, {
+        id: 3,
+        name: 'Im on one',
+        artist: 'Lil Wayne',
+        album: 'The Carter 3'  
       }],
       playlistName: 'My First Playlist',
       playlistTracks: [{
@@ -33,6 +38,19 @@ class App extends React.Component {
         album: 'Album 2'
       }]
     }
+    this.addTrack = this.addTrack.bind(this)
+  }
+
+  addTrack(track) {
+    console.log(track)
+    const foundTrack = this.state.playlistTracks.some((playlistTrack) => playlistTrack.id === track.id)
+    if (foundTrack) {
+      console.log('track on playlist')
+      return
+    }
+    this.setState({
+      playlistTracks: this.state.playlistTracks.concat(track)
+    })
   }
 
   render() {
@@ -42,8 +60,12 @@ class App extends React.Component {
         <div className="App">
           {/* <!-- Add a SearchBar component --> */}
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} />
-            <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
+            <SearchResults 
+              searchResults={this.state.searchResults}
+              onAdd={this.addTrack} />
+            <Playlist 
+              playlistName={this.state.playlistName} 
+              playlistTracks={this.state.playlistTracks} />
           </div>
         </div>
       </div>
