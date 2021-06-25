@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css';
 
 import SearchResults from '../SearchResults/SearchResults.js'
+import Playlist from '../Playlist/Playlist.js'
 
 class App extends React.Component {
 
@@ -20,6 +21,18 @@ class App extends React.Component {
         album: 'The Carter 3'  
       }]
     }
+    this.playlistName = 'My First Playlist'
+    this.playlistTracks = [{
+      id: 1,
+      name: 'Track Name 1',
+      artist: 'Artist 1',
+      album: 'Album 1'
+    },{
+      id: 2,
+      name: 'Track Name 1',
+      artist: 'Artist 2',
+      album: 'Album 2'
+    }]
   }
 
   render() {
@@ -30,7 +43,7 @@ class App extends React.Component {
           {/* <!-- Add a SearchBar component --> */}
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} />
-            {/* <!-- Add a Playlist component --> */}
+            <Playlist playlistName={this.playlistName} playlistTracks={this.playlistTracks} />
           </div>
         </div>
       </div>
