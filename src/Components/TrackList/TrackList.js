@@ -2,16 +2,14 @@ import React from 'react'
 
 import './TrackList.css'
 
+import Track from '../Track/Track.js'
+
 class TrackList extends React.Component {
 
     render() {
         const searchResults = this.props.trackList.map((track) => {
             return (
-                <div className="Track" key={track.id}>
-                    <p>Song Name: {track.name}</p>
-                    <p>Album: {track.album}</p>
-                    <p>Artist: {track.artist}</p>
-                </div>
+                <Track track={track} />
             )
         })
         return (
