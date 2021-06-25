@@ -7,14 +7,11 @@ import Track from '../Track/Track.js'
 class TrackList extends React.Component {
 
     render() {
-        const searchResults = this.props.trackList.map((track) => {
-            return (
-                <Track track={track} />
-            )
-        })
+        const list = this.props.trackList.map((track) => <Track key={track.id} track={track} />)
+
         return (
             <div className="TrackList">
-                {searchResults}
+                {list}
             </div>
         )
     }
