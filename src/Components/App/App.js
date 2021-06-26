@@ -11,16 +11,19 @@ class App extends React.Component {
     this.state = {
       searchResults: [{
         id: 1,
+        uri: 'spotify:track:6rqhFgbbKadb9MLmUQDhG6',
         name: 'Track Name',
         artist: 'Artist',
         album: 'Album'
       },{
         id: 2,
+        uri: 'spotify:track:6r23bbKwnb9MLmUQDhG6',
         name: 'Im on one',
         artist: 'Lil Wayne',
         album: 'The Carter 3'  
       }, {
         id: 3,
+        uri: 'spotify:track:6rqhFgbbKwnb567mUQDhG6',
         name: 'Im on one',
         artist: 'Lil Wayne',
         album: 'The Carter 3'  
@@ -28,11 +31,13 @@ class App extends React.Component {
       playlistName: 'My First Playlist',
       playlistTracks: [{
         id: 1,
+        uri: 'spotify:track:6rqhF323wnb9MLmUQDhG6',
         name: 'Track Name 1',
         artist: 'Artist 1',
         album: 'Album 1'
       },{
         id: 2,
+        uri: 'spotify:track:6rqhFg3nb9MLmUQDhG6',
         name: 'Track Name 1',
         artist: 'Artist 2',
         album: 'Album 2'
@@ -41,6 +46,7 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this)
     this.removeTrack = this.removeTrack.bind(this)
     this.updatePlaylistName = this.updatePlaylistName.bind(this)
+    this.savePlaylist = this.savePlaylist.bind(this)
   }
 
   addTrack(track) {
@@ -65,6 +71,11 @@ class App extends React.Component {
     })
   }
 
+  savePlaylist() {
+    const trackURIs = this.state.playlistTracks.map((track) => track.uri)
+    console.log(trackURIs)
+  }
+
   render() {
     return (
       <div>
@@ -79,7 +90,8 @@ class App extends React.Component {
               playlistName={this.state.playlistName} 
               playlistTracks={this.state.playlistTracks}
               onRemove={this.removeTrack}
-              onNameChange={this.updatePlaylistName} />
+              onNameChange={this.updatePlaylistName}
+              onClick={this.savePlaylist} />
           </div>
         </div>
       </div>
