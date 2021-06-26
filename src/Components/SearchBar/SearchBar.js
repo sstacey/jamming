@@ -1,7 +1,5 @@
 import React from 'react'
 
-import Spotify from '../../util/Spotify.js'
-
 import './SearchBar.css';
 
 class SearchBar extends React.Component {
@@ -17,7 +15,6 @@ class SearchBar extends React.Component {
 
     search() {
         this.props.onSearch(this.state.searchTerm)
-        Spotify.search()
     }
 
     handleTermChange(e) {

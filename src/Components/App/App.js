@@ -1,6 +1,8 @@
 import React from 'react'
 import './App.css';
 
+import Spotify from '../../util/Spotify.js'
+
 import SearchResults from '../SearchResults/SearchResults.js'
 import Playlist from '../Playlist/Playlist.js'
 import SearchBar from '../SearchBar/SearchBar.js'
@@ -10,25 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchResults: [{
-        id: 1,
-        uri: 'spotify:track:6rqhFgbbKadb9MLmUQDhG6',
-        name: 'Track Name',
-        artist: 'Artist',
-        album: 'Album'
-      },{
-        id: 2,
-        uri: 'spotify:track:6r23bbKwnb9MLmUQDhG6',
-        name: 'Im on one',
-        artist: 'Lil Wayne',
-        album: 'The Carter 3'  
-      }, {
-        id: 3,
-        uri: 'spotify:track:6rqhFgbbKwnb567mUQDhG6',
-        name: 'Im on one',
-        artist: 'Lil Wayne',
-        album: 'The Carter 3'  
-      }],
+      searchResults: [],
       playlistName: 'My First Playlist',
       playlistTracks: [{
         id: 1,
@@ -78,8 +62,12 @@ class App extends React.Component {
     console.log(trackURIs)
   }
 
-  search(term) {
-    console.log(term)
+  async search(term) {
+    const results = await Spotify.search(term)
+    console.log(results)
+    this.setState({
+      searchResults: results
+    })
   }
 
   render() {
