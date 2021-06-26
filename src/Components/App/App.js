@@ -3,6 +3,7 @@ import './App.css';
 
 import SearchResults from '../SearchResults/SearchResults.js'
 import Playlist from '../Playlist/Playlist.js'
+import SearchBar from '../SearchBar/SearchBar.js'
 
 class App extends React.Component {
 
@@ -47,6 +48,7 @@ class App extends React.Component {
     this.removeTrack = this.removeTrack.bind(this)
     this.updatePlaylistName = this.updatePlaylistName.bind(this)
     this.savePlaylist = this.savePlaylist.bind(this)
+    this.search = this.search.bind(this)
   }
 
   addTrack(track) {
@@ -76,6 +78,10 @@ class App extends React.Component {
     console.log(trackURIs)
   }
 
+  search(term) {
+    console.log(term)
+  }
+
   render() {
     return (
       <div>
@@ -83,6 +89,8 @@ class App extends React.Component {
         <div className="App">
           {/* <!-- Add a SearchBar component --> */}
           <div className="App-playlist">
+            <SearchBar
+              onSearch={this.search} />
             <SearchResults 
               searchResults={this.state.searchResults}
               onAdd={this.addTrack} />
