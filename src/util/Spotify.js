@@ -1,6 +1,7 @@
 let accessToken
 const clientID = 'c8005f325c344b6f8599d36639d3045c'
 const redirectURI = 'http://localhost:3000/'
+const scopes = encodeURIComponent('playlist-modify-public playlist-modify-private')
 
 const Spotify = {
     accessToken: '',
@@ -18,7 +19,7 @@ const Spotify = {
             window.history.pushState('Access Token', null, '/');
             return accessToken
         } else {
-            const url = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&redirect_uri=${redirectURI}`
+            const url = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&redirect_uri=${redirectURI}&scope=${scopes}`
             window.location = url
         }
     },
@@ -42,6 +43,30 @@ const Spotify = {
                 uri: track.uri
             }
         })
+    },
+    async savePlaylist(name, trackUris) {
+        if (!name || !trackUris) {
+            return
+        }
+        const accessToken = Spotify.getAccessToken()
+        const headers = {
+            Authorization: 'Bearer ' + accessToken
+        }
+        const response = await fetch('https://api.spotify.com/v1/me', {
+            headers
+        })
+        const jsonResponse = await response.json()
+        const userID = jsonResponse.id
+        const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({name})
+        })
+        const jsonPlaylistResponse = await playlistResponse.json()
+        const playlistID = jsonPlaylistResponse.id
+        console.log(jsonPlaylistResponse)
+        // const jsonPlaylistReponse = await playlistResponse.json()
+        // const playlistID = jsonPlaylistReponse.id
     }
 }
 
