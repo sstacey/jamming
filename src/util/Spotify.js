@@ -64,9 +64,11 @@ const Spotify = {
         })
         const jsonPlaylistResponse = await playlistResponse.json()
         const playlistID = jsonPlaylistResponse.id
-        console.log(jsonPlaylistResponse)
-        // const jsonPlaylistReponse = await playlistResponse.json()
-        // const playlistID = jsonPlaylistReponse.id
+        const trackPlaylistResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({uris: trackUris})
+        })
     }
 }
 
