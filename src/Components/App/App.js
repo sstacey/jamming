@@ -65,7 +65,6 @@ class App extends React.Component {
 
   async search(term) {
     const results = await Spotify.search(term)
-    console.log(results)
     this.setState({
       searchResults: results
     })

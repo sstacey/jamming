@@ -30,21 +30,18 @@ const Spotify = {
             }
         })
         const jsonResponse = await response.json()
-        if (jsonResponse) {
-            const searchResults = jsonResponse.tracks.items.map((track) => {
-                return {
-                    id: track.id,
-                    name: track.name,
-                    artist: track.artists[0].name,
-                    album: track.album.name,
-                    uri: track.uri
-                }
-            })
-            return searchResults
+        if (jsonResponse.error) {
+            return []
         }
-        
-        // console.log(searchResults)
-        // const searchResults = jsonResponse.
+        return jsonResponse.tracks.items.map((track) => {
+            return {
+                id: track.id,
+                name: track.name,
+                artist: track.artists[0].name,
+                album: track.album.name,
+                uri: track.uri
+            }
+        })
     }
 }
 
