@@ -4,7 +4,6 @@ const redirectURI = 'http://localhost:3000/'
 const scopes = encodeURIComponent('playlist-modify-public playlist-modify-private')
 
 const Spotify = {
-    accessToken: '',
     getAccessToken () {
         if (accessToken) {
             return accessToken
