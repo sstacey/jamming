@@ -26,9 +26,11 @@ class App extends React.Component {
 
   addTrack(track) {
     const foundTrack = this.state.playlistTracks.some((playlistTrack) => playlistTrack.id === track.id)
+    const searchResults = this.state.searchResults.filter((result) => result.id !== track.id)
     if (!foundTrack) {
       this.setState({
-        playlistTracks: this.state.playlistTracks.concat(track)
+        playlistTracks: this.state.playlistTracks.concat(track),
+        searchResults
       })
     }
   }
@@ -36,7 +38,8 @@ class App extends React.Component {
   removeTrack(track) {
     const newPlaylistTracks = this.state.playlistTracks.filter((playlistTrack) => playlistTrack.id !== track.id)
     this.setState({
-      playlistTracks: newPlaylistTracks
+      playlistTracks: newPlaylistTracks,
+      searchResults: this.state.searchResults.concat(track)
     })
   }
 
