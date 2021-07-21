@@ -1,4 +1,5 @@
 let accessToken
+// Client ID no longer active for security reasons
 const clientID = 'c8005f325c344b6f8599d36639d3045c'
 const redirectURI = 'http://localhost:3000/'
 const scopes = encodeURIComponent('playlist-modify-public playlist-modify-private')
